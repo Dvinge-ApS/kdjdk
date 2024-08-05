@@ -1,0 +1,34 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build Docker image
+      run: |
+        docker build -t 10.0.10.251:5000/kdjdk:${{ github.sha }} .
+        docker tag 10.0.10.251:5000/kdjdk:${{ github.sha }} 10.0.10.251:5000/kdjdk:latest
+
+    - name: Push to local registry
+      run: |
+        docker push 10.0.10.251:5000/kdjdk:${{ github.sha }}
+        docker push 10.0.10.251:5000/kdjdk:latest
+
+    - name: Deploy
+      run: |
+        docker pull 10.0.10.251:5000/kdjdk:latest
+        docker stop kdjdk-container || true
+        docker rm kdjdk-container || true
+        docker run -d --name kdjdk-container -p 8080:80 10.0.10.251:5000/kdjdk:latest
+
+    - name: Clean up old images
+      run: docker image prune -af

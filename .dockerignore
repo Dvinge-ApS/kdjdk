@@ -1,0 +1,19 @@
+# .dockerignore
+
+# Exclude version control files
+.git
+.gitignore
+
+# Exclude node modules if you have any
+node_modules
+
+# Exclude any log files
+*.log
+
+# Exclude the Dockerfile itself and .dockerignore
+Dockerfile
+.dockerignore
+
+# Exclude any other development or build files that aren't needed in the image
+*.md
+*.txt
