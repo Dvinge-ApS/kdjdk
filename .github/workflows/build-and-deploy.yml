@@ -22,13 +22,3 @@ jobs:
       run: |
         docker push docker-registry.local/kdjdk:${{ github.sha }}
         docker push docker-registry.local/kdjdk:latest
-
-    - name: Deploy
-      run: |
-        docker pull docker-registry.local/kdjdk:latest
-        docker stop kdjdk-container || true
-        docker rm kdjdk-container || true
-        docker run -d --name kdjdk-container -p 8080:80 docker-registry.local/kdjdk:latest
-
-    - name: Clean up old images
-      run: docker image prune -af
