@@ -15,20 +15,20 @@ jobs:
     
     - name: Build Docker image
       run: |
-        docker build -t 10.0.10.251:5000/kdjdk:${{ github.sha }} .
-        docker tag 10.0.10.251:5000/kdjdk:${{ github.sha }} 10.0.10.251:5000/kdjdk:latest
+        docker build -t docker-registry.local/kdjdk:${{ github.sha }} .
+        docker tag docker-registry.local/kdjdk:${{ github.sha }} docker-registry.local/kdjdk:latest
 
     - name: Push to local registry
       run: |
-        docker push 10.0.10.251:5000/kdjdk:${{ github.sha }}
-        docker push 10.0.10.251:5000/kdjdk:latest
+        docker push docker-registry.local/kdjdk:${{ github.sha }}
+        docker push docker-registry.local/kdjdk:latest
 
     - name: Deploy
       run: |
-        docker pull 10.0.10.251:5000/kdjdk:latest
+        docker pull docker-registry.local/kdjdk:latest
         docker stop kdjdk-container || true
         docker rm kdjdk-container || true
-        docker run -d --name kdjdk-container -p 8080:80 10.0.10.251:5000/kdjdk:latest
+        docker run -d --name kdjdk-container -p 8080:80 docker-registry.local/kdjdk:latest
 
     - name: Clean up old images
       run: docker image prune -af
