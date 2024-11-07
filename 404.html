@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>404 - Page Not Found | Kasper Dvinge</title>
+    <style>
+        /* Reusing your existing styles with some additions */
+        :root { --a:#33ff33; --b:rgba(0,20,0,.8); --c:#000; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background:#0a0a0a;
+            color:var(--a);
+            font-family:"Lucida Console",Monaco,monospace;
+            margin:0;
+            overflow-x:hidden;
+            position:relative;
+            cursor:crosshair;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+        /* Scanline effect from your original site */
+        body::before {
+            content:"";
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:linear-gradient(transparent 50%,rgba(0,0,0,.05)50%);
+            background-size:100% 4px;
+            pointer-events:none;
+            animation:scanline .15s infinite;
+            z-index:100;
+        }
+        @keyframes scanline {
+            0%,100% { opacity:.9; }
+            50% { opacity:.8; }
+        }
+        .container {
+            max-width:800px;
+            margin:0 auto;
+            padding:20px;
+            text-align:center;
+        }
+        .error-box {
+            border:2px solid var(--a);
+            background:var(--b);
+            padding:40px 20px;
+            margin-bottom:30px;
+        }
+        .ascii-art {
+            font-family:monospace;
+            white-space:pre;
+            text-align:center;
+            margin:20px 0;
+            font-size:12px;
+            line-height:1.2;
+        }
+        h1 {
+            font-size:48px;
+            margin:20px 0;
+            text-transform:uppercase;
+            letter-spacing:5px;
+        }
+        .error-message {
+            margin:20px 0;
+            font-size:16px;
+            border-top:1px solid var(--a);
+            border-bottom:1px solid var(--a);
+            padding:10px;
+        }
+        .home-link {
+            display:inline-block;
+            padding:10px 20px;
+            margin:20px 0;
+            color:var(--a);
+            text-decoration:none;
+            border:1px solid var(--a);
+            transition:.3s;
+        }
+        .home-link:hover {
+            background:var(--a);
+            color:var(--c);
+        }
+        .terminal-text {
+            margin:20px 0;
+            font-family:monospace;
+        }
+        .blink {
+            animation:blink 1s infinite;
+        }
+        @keyframes blink {
+            0%,100% { opacity:1; }
+            50% { opacity:0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-box">
+            <div class="ascii-art">
+░█▀▀▀ ░█▀▀█ ░█▀▀█ ░█▀▀▀█ ░█▀▀█
+░█▀▀▀ ░█▄▄▀ ░█▄▄▀ ░█──░█ ░█▄▄▀
+░█▄▄▄ ░█─░█ ░█─░█ ░█▄▄▄█ ░█─░█</div>
+            <h1>404 Not Found</h1>
+            <div class="error-message">SYSTEM ERROR: PAGE NOT FOUND IN DATABASE</div>
+            <div class="terminal-text">
+                <p>> SCANNING DIRECTORY...<br>
+                > ATTEMPTING TO LOCATE REQUESTED RESOURCE...<br>
+                > ERROR: FILE NOT FOUND IN SYSTEM<br>
+                > SUGGESTED ACTION: RETURN TO HOME BASE<br>
+                > _<span class="blink">█</span></p>
+            </div>
+            <a href="/" class="home-link">RETURN TO HOME DIRECTORY</a>
+        </div>
+    </div>
+</body>
+</html>

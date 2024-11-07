@@ -1,19 +1,26 @@
-# .dockerignore
-
-# Exclude version control files
-.git
+# Git related
+.git/
 .gitignore
+.github/
 
-# Exclude node modules if you have any
-node_modules
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# Exclude any log files
+# Logs
 *.log
 
-# Exclude the Dockerfile itself and .dockerignore
-Dockerfile
-.dockerignore
+# System files
+.DS_Store
+Thumbs.db
 
-# Exclude any other development or build files that aren't needed in the image
-*.md
-*.txt
+# Build artifacts
+node_modules/
+dist/
+build/
+
+# Do NOT ignore these text files
+!robots.txt
+!sitemap.xml

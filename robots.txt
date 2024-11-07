@@ -1,0 +1,7 @@
+# robots.txt for kdj.dk
+User-agent: *
+Allow: /
+# Crawl-delay
+Crawl-delay: 10
+# Sitemap
+Sitemap: https://kdj.dk/sitemap.xml
